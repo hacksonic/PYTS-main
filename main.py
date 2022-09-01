@@ -2,21 +2,30 @@ from msvcrt import LK_UNLCK
 import os
 from googletrans import Translator
 import time
+from httpcore import SyncHTTPProxy
+import random
 
 
-translator=Translator()
 font_size='<font size=50>'
 
+proxy_list=[]
+
+with open('E:\h4cksldkflsldlf\Proxy\workproxy.txt', 'r', encoding='utf-8') as p:
+    for proxy in p:
+        proxy_list.append('http://'+proxy.strip())
+
+    
+
 path='E:\\Udemy\\Tool\\udemy-downloader-master\\out_dir\\complete-python-bootcamp-sub\\'
-
 lecture_list=os.listdir(path)
-
 print(lecture_list)
 
 for lecture in lecture_list:
     srt_list=os.listdir(path+'\\'+lecture)
-
     for srt_file in srt_list:
+        proxy=proxy_list[random.randint(0,len(proxy_list))]
+
+        translator=Translator(proxies=proxy)
         with open(path+'\\'+lecture+'\\'+srt_file, 'r', encoding='utf-8') as f:
             output_file=[]
             output_filename=srt_file.replace('en','zh-tw')
@@ -26,6 +35,7 @@ for lecture in lecture_list:
                 if (Line_counting-2) % 4 == 0:
                     translations=translator.translate(srt_line, dest='zh-tw')
                     output_file.append(font_size+translations.text+ '\n'+font_size+srt_line)
+                    print(srt_file)
                 else:
                     output_file.append(srt_line)
                 time.sleep(1)
