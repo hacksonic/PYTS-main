@@ -3,6 +3,7 @@ import os
 from googletrans import Translator
 import time
 
+
 translator=Translator()
 font_size='<font size=50>'
 
@@ -16,7 +17,7 @@ for lecture in lecture_list:
     srt_list=os.listdir(path+'\\'+lecture)
 
     for srt_file in srt_list:
-        with open(path+'\\'+srt_file, 'r', encoding='utf-8') as f:
+        with open(path+'\\'+lecture+'\\'+srt_file, 'r', encoding='utf-8') as f:
             output_file=[]
             output_filename=srt_file.replace('en','zh-tw')
             Line_counting = 0
@@ -30,7 +31,7 @@ for lecture in lecture_list:
                 time.sleep(1)
                 Line_counting += 1
 
-        with open(path+srt_list+'\\'+output_filename, 'w', encoding='utf-8') as fo:
+        with open(path+'\\'+lecture+'\\'+output_filename, 'w', encoding='utf-8') as fo:
             for output_line in output_file:
                 fo.write(output_line)
 
