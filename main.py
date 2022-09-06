@@ -16,7 +16,7 @@ with open('E:\h4cksldkflsldlf\Proxy\workproxy.txt', 'r', encoding='utf-8') as p:
 
     
 
-path='E:\\Udemy\\Tool\\udemy-downloader-master\\out_dir\\complete-python-bootcamp-sub\\'
+path='E:\\Udemy\\Tool\\udemy-downloader-master\\out_dir\\100-days-of-code-sub\\'
 lecture_list=os.listdir(path)
 print(lecture_list)
 
